@@ -1,0 +1,58 @@
+<h2>Kit List</h2>
+<button class="btn" ng-click="manageKit = !manageKit">Manage</button>
+
+    
+        <!--<tr ng-if="manage" ng-repeat="item in cadetKit" ng-class-even="'alt'">-->
+<div ng-hide="manageKit" ng-cloak>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;"><h3>Item</h3></th>
+                <th style="width: 15%;"><h3>Quantity borrowed</h3></th>
+                <th style="width: 30%;"></th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="item in cadetKit | filter: {quantity: '!0'}">
+            <tr ng-class-even="'alt'">
+                <td>{{item.name}}</td>
+                <td>
+                    {{item.quantity}}
+                </td>
+                <td></td>
+            </tr>
+            <tr ng-repeat="size in item.sizes">
+                <td>{{size.size}}</td>
+                <td>{{size.total - size.onLoan}}</td>
+                <td>{{size.onLoan}}</td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ng-show="manageKit" ng-cloak>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;"><h3>Item</h3></th>
+                <th style="width: 15%;"><h3>Quantity borrowed</h3></th>
+                <th style="width: 30%;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in cadetKit" ng-class-even="'alt'">
+                <td>{{item.name}}</td>
+                <td>
+                    <input type="number" class="col-sm-12" ng-model="item.quantity" ng-change="changeItemValue(item,'quantity',item.quantity)">
+                </td>
+                <td>
+                    <div class="control-label form-horizontal"><input type="button" class="btn btn-blue" ng-click="increaseItemValue(item,'quantity')" value="+"/>
+                        <input type="button" class="btn btn-red" ng-click="decreaseItemValue(item,'quantity')" value="-"></div><br>
+                    <div class="form-group form-horizontal"><input type="button" class="btn btn-blue" ng-click="addItem(item,'quantity')" value="Add to stores"/>
+                    <input type="button" class="btn btn-red" ng-click="removeItem(item,'quantity')" value="Remove from Stores"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<button class="btn" ng-if="manageKit" ng-click="addItems()">Add Items</button>
+<button class="btn" ng-click="testFunction()">Test</button>

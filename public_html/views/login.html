@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<section class="card login">
+    <form name="loginForm" novalidate ng-submit="login()">
+        <div>
+            <h1>Welcome</h1>
+            <h2>{{message}}</h2>
+        </div>
+        
+        <fieldset>
+            <!--
+            <select id="unit" name="unit" ng-model="user.unit" required>
+                <option selected disabled value="">-- Please select a Unit --</option>
+                <option ng-repeat="unit in Units" value="{{unit.name}}">{{unit.name}}</option>
+            </select>
+            {{unit}}
+            -->
+            <input type="email" name="email" placeholder="Email" ng-model="user.email" required>
+            <p class="error validationerror"
+                ng-show="loginForm.email.$invalid && loginForm.email.$touched">
+                Must be a valid email</p>
+            
+            <input type="password" name="password" placeholder="Password" ng-model="user.password" required>
+            <p class="error validationerror"
+                ng-show="loginForm.password.$invalid && loginForm.password.$touched">
+                Password is required</p>
+        </fieldset>
+        
+        <button type="submit" class="btn" ng-disabled="loginForm.$invalid">Login</button>
+<!--        <p> or <a href="#/register">register</a></p>-->
+    </form>
+</section>

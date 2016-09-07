@@ -1,0 +1,55 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!-- Display cadets, and buttons for creating new cadet -->
+<section class="card">
+
+<div class="textintro">
+  <h1>Cadet Management</h1>
+  <p>view, add and manage cadet details</p>
+  <p class="message" ng-show="message">Message: {{ message }}</p>
+</div>
+
+<!-- New Cadet -->
+<div id="newCadet" ng-show="showNewCadet">
+    <form id="newCadetForm" ng-submit="createNewCadet(newCadet)" novalidate>
+        <fieldset>
+            <div>Rank:</div>
+            <select id="newCadetRank" name="newCadetRank" ng-model="newCadet.rank" ng-options="rank.acronym for (id,rank) in rankArray" required>
+                <option selected disabled value="">-- Select a Rank --</option>
+                <!--<option ng-repeat="rank in Ranks" value="{{rank.name}}">{{rank.name}}</option>-->
+            </select>
+            <div>First Name:</div>
+                <input id="newCadetFirstName" name="newCadetFirstName" ng-model="newCadet.firstName" type="text" placeholder="First Name" required>
+            <div>Last Name:</div>   
+            <input id="newCadetLastName" name="newCadetLastName" ng-model="newCadet.lastName" type="text" placeholder="Last Name" required>
+            {{newCadet}}
+            <button class="btn" type="submit" ng-disabled="newCadetForm.$invalid">Create New Cadet</button>
+        </fieldset>
+    </form>
+</div>
+<div class="btn" ng-click="showNewCadet = !showNewCadet">New Cadet</div>
+<!-- show cadets -->
+<h2>Cadet table</h2>
+<!--<div ng-repeat="cadet in cadets"><a ng-href="#/cadet/{{cadet.$id}}">{{cadet.firstName}} {{cadet.lastName}}</a><br></div>-->
+Search:<input type="text" ng-model="cadetSearch">
+<div class="table-responsive">
+    <table id="cadet_table" class="table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Cadet Name</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="cadet in cadets | filter:cadetSearch">
+                <td style="width: 10%;">{{cadet.rank.acronym}}</td>
+                <td style="width: 90%;"><a ng-href="#/cadet/{{cadet.$id}}">{{cadet.lastName}}, {{cadet.firstName}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</section>

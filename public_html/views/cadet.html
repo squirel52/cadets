@@ -1,0 +1,17 @@
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="cadet card">
+    <h1>{{cadetInfo.rank.name}} {{cadetInfo.firstName | capitalize}} {{cadetInfo.lastName | capitalize}}</h1>
+    <h4><button class="btn" ng-click="editName = !editName" ng-show='showDetails'>Edit</button></h4>
+    
+    <button class="btn" ng-click="showDetails = true; showKit = false;">Cadet Details</button>
+    <button class="btn" ng-click="showKit = true; showDetails = false;">Cadet Kit</button>
+    
+    <div ng-if="showDetails" ng-include="'views/cadetDetails.html'"></div>
+    <div ng-if="showKit" ng-include="'views/cadetKit.html'"></div>
+</div>
+

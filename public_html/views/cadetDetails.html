@@ -1,0 +1,210 @@
+<h2> Cadet Details </h2>
+    <form class="form-horizontal">
+        <div class="form-group" ng-show="editName">
+            <label class="control-label col-sm-3" for="firstName">First Name: </label>
+            <div class="col-sm-8">
+                <input id="firstName" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.firstName" type="text">
+            </div>
+        </div>
+       <div class="form-group" ng-show="editName">
+            <label class="control-label col-sm-3" for="lastName">Last Name: </label>
+            <div class="col-sm-8">
+                <input id="lastName" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.lastName" type="text">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="rank">Rank: </label>
+            <div class="col-sm-8">
+                <!--<input id="rank" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.rank" type="text">-->
+                <select ng-options="rank.acronym for (id,rank) in rankArray" ng-change="cadetInfo.$save()" ng-model="cadetInfo.rank">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="streetAddress">Street Address: </label>
+            <div class="col-sm-8">
+                <input id="streetAddress" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.streetAddress" type="text">
+            </div>
+        </div>        
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="postalAddress">Postal Address: </label>
+            <div class="col-sm-8">
+                <input id="postalAddress" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.postalAddress" type="text">
+            </div>
+        </div> 
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="homePhone">Home Phone: </label>
+            <div class="col-sm-8">
+                <input id="homePhone" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.homePhone" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="email">Email Address: </label>
+            <div class="col-sm-8">
+                <input id="email" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.email" type="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="mobilePhone">Mobile: </label>
+            <div class="col-sm-8">
+                <input id="cellPhone" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.mobilePhone" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="dob">Date Of Birth: </label>
+            <div class="col-sm-8">
+                <!--<md-datepicker ng-change="cadetInfo.$save()" ng-model="cadetInfo.dateOfBirth" md-placeholder="Enter date"></md-datepicker>-->
+            </div>
+        </div>
+        {{cadetInfo.dateOfBirth}}
+    </form>
+    
+    <h2> Medical Details </h2>
+    <form class="form-horizontal">
+        <h3>Family Doctor</h3>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="medicalDocName">Name: </label>
+            <div class="col-sm-8">
+                <input id="medicalDocName" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.medicalDocName" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="medicalDocAddress">Address: </label>
+            <div class="col-sm-8">
+                <input id="medicalDocAddress" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.medicalDocAddress" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="medicalDocPhone">Phone: </label>
+            <div class="col-sm-8">
+                <input id="medicalDocPhone" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.medicalDocPhone" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="medicalDocAHPhone">A/H Phone: </label>
+            <div class="col-sm-8">
+                <input id="medicalDocAHPhone" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.medicalDocAHPhone" type="text">
+            </div>
+        </div>
+        <h3>General</h3>
+        <div class="form-group">
+            <label class="control-label col-sm-5" for="medicalConcerns">Any diseases/sickness/injury/allergies: </label>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input id="medicalConcernsTrue" name="medicalConcerns" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.medicalConcerns" type="radio" value='true'><div> Yes</div></label>
+                <label class="radio-inline"><input id="medicalConcernsFalse" name="medicalConcerns" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.medicalConcerns" type="radio" value='false'><div> No</div></label>
+            </div>
+        </div>
+        <div class="form-group" ng-if="cadetInfo.medicalConcerns == 'true'">
+            <label class="control-label col-sm-3" for="medicalConcernsDetails">Details: </label>
+            <div class="col-sm-8">
+                <input id="medicalConcernsDetails" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.medicalConcernsDetails" type="text">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-5" for="medicalTreatment">Are you receiving any medical treatment? </label>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input id="medicalTreatmentTrue" name="medicalTreatment" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.medicalTreatment" type="radio" value="true"><div> Yes</div></label>
+                <label class="radio-inline"><input id="medicalTreatmentFalse" name="medicalTreatment" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.medicalTreatment" type="radio" value="false"><div> No</div></label>
+            </div>
+        </div>
+        <div class="form-group" ng-if="cadetInfo.medicalTreatment == 'true'">
+            <label class="control-label col-sm-3" for="medicalTreatmentDetails">Details: </label>
+            <div class="col-sm-8">
+                <input id="medicalTreatmentDetails" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.medicalTreatmentDetails" type="text">
+            </div>
+        </div>
+    </form>
+    
+    <h2> Next of Kin Details </h2>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="nokName">Next of Kin Name: </label>
+            <div class="col-sm-8">
+                <input id="nokName" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokName" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="nokRelationship">Relationship: </label>
+            <div class="col-sm-8">
+                <input id="nokRelationship" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokRelationship" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="nokAddress">Address: </label>
+            <div class="col-sm-8">
+                <input id="nokAddress" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokAddress" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="nokHomePhone">Home Phone: </label>
+            <div class="col-sm-8">
+                <input id="nokHomePhone" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokHomePhone" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="nokWorkPhone">Work Phone: </label>
+            <div class="col-sm-8">
+                <input id="nokWorkPhone" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokWorkPhone" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="nokMobilePhone">Mobile Phone: </label>
+            <div class="col-sm-8">
+                <input id="nokMobilePhone" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokMobilePhone" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="nokEmail">Email Address: </label>
+            <div class="col-sm-8">
+                <input id="nokEmail" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokEmail" type="email">
+            </div>
+        </div>
+    </form>
+    
+    <h2> Alternate Next of Kin Details</h2>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="anokName">Next of Kin Name: </label>
+            <div class="col-sm-8">
+                <input id="anokName" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokName" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="anokRelationship">Relationship: </label>
+            <div class="col-sm-8">
+                <input id="anokRelationship" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokRelationship" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="anokAddress">Address: </label>
+            <div class="col-sm-8">
+                <input id="anokAddress" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokAddress" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="anokHomePhone">Home Phone: </label>
+            <div class="col-sm-8">
+                <input id="anokHomePhone" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokHomePhone" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="anokWorkPhone">Work Phone: </label>
+            <div class="col-sm-8">
+                <input id="anokWorkPhone" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokWorkPhone" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="anokMobilePhone">Mobile Phone: </label>
+            <div class="col-sm-8">
+                <input id="anokMobilePhone" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokMobilePhone" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="anokEmail">Email Address: </label>
+            <div class="col-sm-8">
+                <input id="anokEmail" class="form-control" ng-change="cadetInfo.$save()" ng-model="cadetInfo.nokEmail" type="email">
+            </div>
+        </div>
+    </form>

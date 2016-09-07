@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div ng-controller="RegistrationController">
+
+    <div class="branding"><a href="#/cadets">NZCF</a></div>
+    <ul>
+        <li>
+            <span class="userinfo" ng-show="currentUser">
+                    <span class="userinfo">Hi {{currentUser.firstName}} {{currentUser.lastName}}</span>
+                </span>
+        </li>
+        <li><div ng-show="currentUser"><a ng-href="#/login" ng-click="logout()">Logout</a></div></li>
+        <li><a ng-hide="currentUser" ng-href="#/login">Login</a></li>
+        <li><a ng-show="currentUser" ng-href="#/register">Register Administrator</a></li>
+        <li><a ng-show="currentUser" ng-href="#/cadets">Manage Cadets</a></li>
+        <li><a ng-show="currentUser" ng-href="#/stores">Manage Stores</a></li>
+        <!-- Dropdown to select active unit -->
+    </ul>
+</div>
+
+

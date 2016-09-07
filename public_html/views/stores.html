@@ -1,0 +1,69 @@
+<div class="store card">
+    <h1>Manage Stores</h1>
+    Search:<input type="text" ng-model="storeSearch">
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Item</th>
+                <th style="width: 15%;">Available</th>
+                <th style="width: 15%;">On loan</th>
+                <th style="width: 20%;">Total</th>
+                <th style="width: 25%;">Manage</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="item in storeItems | filter:storeSearch">
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.total - item.onLoan}}</td>
+                <td>{{item.onLoan}}</td>
+                <td>
+                    <div>
+                        <input type="number" class="col-sm-6" ng-model="item.total" ng-change="changeItemValue(item,'total',item.total)">
+                        <div class="col-sm-6"><input type="button" class="btn btn-blue" ng-click="increaseItemValue(item,'total')" value="+"/>
+                        <input type="button" class="btn btn-red" ng-click="decreaseItemValue(item,'total')" value="-"></div>
+                        <input type=button class="btn" ng-click="item.newSize = true" value="Add Size">
+                    </div>
+                </td>
+                <td>
+            </tr>
+            
+            <tr ng-show="item.newSize">
+                <td>Size to add: </td>
+                <td><input type="text" ng-model="newSize"></td>
+                <td><input type="button" class="btn btn-green" ng-click="addSize(item,newSize)" value="Add"></td>
+                    
+            </tr>
+            
+            <tr ng-repeat="size in item.sizes">
+                <td style="text-align:right;">{{size.size}}&nbsp; </td>
+                <td>{{size.total - size.onLoan}}</td>
+                <td>{{size.onLoan}}</td>
+                <td>
+                    <div>
+                        <input type="number" class="col-sm-6" ng-model="size.total" ng-change="changeSizeValue(item,size,'total',size.total)">
+                        <div class="col-sm-6"><input type="button" class="btn btn-blue" ng-click="increaseSizeValue(item,size,'total')" value="+"/>
+                        <input type="button" class="btn btn-red" ng-click="decreaseSizeValue(item,size,'total')" value="-"></div>
+                    </div>
+                </td>
+                <td>
+                    <button>Manage</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <button class="btn" ng-click="addStoreItem = !addStoreItem" ng-hide="addStoreItem">Add New Item</button>
+    <div ng-show="addStoreItem">
+        <div>new item: </div>
+        <input ng-model="newItem" type="text" ng-keyup="$event.keyCode === 13 ? addItem() : null"/>
+        For: <select ng-model="for" required>
+            <option value="cadets" selected>Cadets</option>
+            <option value="SNCOs">SNCOs</option>
+            <option value="Officers">Officers</option>
+        </select>
+        <button class="btn" ng-click="addItem()">Add Item</button>
+    </div>
+    <div> Comments:
+        <input type="textarea"> </div>
+    
+</div>
